@@ -11,24 +11,14 @@ def run
   user_info = User.find_or_create_by_name(name)
   puts "What would you like to do today?"
   puts "List:"
-  puts "------------"
-  puts "1. Search For An Artist"
-  puts "2. My Artists"
+  puts "-------------------------"
+  puts "1. Search For An Artist"#Complete
+  puts "2. My Artists"#Complete
   puts "3. Search Local Concerts"
+  puts "4. Follow Artist"#Complete
+  puts "5. Search Concerts By City"
+  puts "6. Exit"
+  answer = gets.chomp
+
 
 end
-
-response = RestClient.get("https://api.seatgeek.com/2/events?venue.state=NY&type=concert&client_id=MTI5NzcxN3wxNTE4NDY4MTUzLjk3")
-hash = JSON.parse(response)
-
-hash["events"][0].each do |k, v|
-  if k == ["performers"][0]
-    v[0].each do |k2, v2|
-      puts v if k == "name"
-    end
-  end
-end
-
-
-
-puts "yo"
