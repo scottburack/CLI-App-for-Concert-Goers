@@ -18,18 +18,25 @@ def run
 
 end
 
-def test1
-
-  hash = Artist.new.get_events_by_artist("eminem")
-
-  hash.each do |k,val|
-    val.each do |k2|
-      k2.each do |k3|
-        byebug
-      end
-    end
-  end
-
-end
-
-test1
+# def print_out_shows
+#
+#   hash = Artist.new.get_events_by_artist("eminem")
+#   puts "This artist has these upcoming shows!"
+#   puts "--------------------------------------"
+#   hash.each do |k,val|
+#     # byebug
+#     if k == "events"
+#     val.each do |k2, val2|
+#       k2.each do |k3, val3|
+#         if k3 == "venue"
+#
+#           puts val3["name"]
+#
+#         end
+#       end
+#
+#     end
+#   end
+#
+#
+#   end
