@@ -18,18 +18,17 @@ def run
 
 end
 
-def test1
+response = RestClient.get("https://api.seatgeek.com/2/events?venue.state=NY&type=concert&client_id=MTI5NzcxN3wxNTE4NDY4MTUzLjk3")
+hash = JSON.parse(response)
 
-  hash = Artist.new.get_events_by_artist("eminem")
-
-  hash.each do |k,val|
-    val.each do |k2|
-      k2.each do |k3|
-        byebug
-      end
+hash["events"][0].each do |k, v|
+  if k == ["performers"][0]
+    v[0].each do |k2, v2|
+      puts v if k == "name"
     end
   end
-
 end
 
-test1
+
+
+puts "yo"
