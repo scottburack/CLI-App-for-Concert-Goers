@@ -2,6 +2,7 @@ require_relative '../config/environment.rb'
 require_relative '../app/model/artist'
 require_relative '../app/model/follow'
 require_relative '../app/model/user'
+require_relative '../app/model/event'
 require "byebug"
 
 def run
@@ -21,7 +22,4 @@ def run
   answer = gets.chomp
 
 
-
 end
-
-run
