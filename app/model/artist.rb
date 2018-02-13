@@ -1,6 +1,7 @@
 require 'rest-client'
 require 'json'
 require 'pry'
+
 class Artist < ActiveRecord::Base
   has_many :follows
   has_many :users, through: :follows
@@ -12,6 +13,7 @@ class Artist < ActiveRecord::Base
     response = RestClient.get(url)
     JSON.parse(response)
   end
+
 
 
 
