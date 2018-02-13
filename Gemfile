@@ -8,3 +8,4 @@ gem "require_all"
 gem "http-cookie"
 gem 'json'
 gem 'rest-client'
+gem 'activerecord'
