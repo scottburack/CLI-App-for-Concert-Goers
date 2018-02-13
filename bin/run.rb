@@ -2,6 +2,7 @@ require_relative '../config/environment.rb'
 require_relative '../app/model/artist'
 require_relative '../app/model/follow'
 require_relative '../app/model/user'
+require "byebug"
 
 def run
 
@@ -15,8 +16,20 @@ def run
   puts "2. My Artists"
   puts "3. Search Local Concerts"
 
+end
 
+def test1
+
+  hash = Artist.new.get_events_by_artist("eminem")
+
+  hash.each do |k,val|
+    val.each do |k2|
+      k2.each do |k3|
+        byebug
+      end
+    end
+  end
 
 end
 
-run
+test1

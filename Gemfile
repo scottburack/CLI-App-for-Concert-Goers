@@ -9,3 +9,5 @@ gem "http-cookie"
 gem 'json'
 gem 'rest-client'
 gem 'activerecord'
+gem 'rake'
+gem 'byebug'
