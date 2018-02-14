@@ -28,6 +28,7 @@ class User < ActiveRecord::Base
     else
       Follow.create(user_id: self.id, artist_id: artist.id)
 
+
     end
   end
 
@@ -60,7 +61,8 @@ def put_out_concerts_by_area(location)
   puts "Here are the artists you follow that are playing in this area:"
   puts "--------------------------------------------------------------"
   search_for_concerts_by_area(location).each do |event|
-
+    # byebug
+    if self.artists_array.include?(Artist.find_by(id: event.artist_id).name)
     puts "#{Artist.find_by(id: event.artist_id).name.capitalize}"
     #need to change to only artists user follows
     puts "#{event.name.capitalize}"
@@ -68,7 +70,10 @@ def put_out_concerts_by_area(location)
     puts "Date: #{event.date}"
     puts "###################################"
   end
-  return nil
+
+
+
+  end
 end
 
 

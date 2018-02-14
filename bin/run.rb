@@ -10,6 +10,8 @@ def run
   puts 'Hello. What is your name?'
   name = gets.chomp
   user = User.find_or_create_by_name(name)
+  answer = nil
+  until answer == 5
   puts "What would you like to do today?"
   puts "List:"
   puts "-------------------------"
@@ -19,14 +21,16 @@ def run
   puts "4. Search Concerts By City"#complete
   puts "5. Exit"
   answer = gets.chomp
+
   case answer
   when "1"
     user.show_own_artists
+  when "2"
+    puts "Please enter an artist name:"
+    artist_name = gets.chomp
+    artist = Artist.find_or_create_by_artist_name(artist_name)
 
-  # when "2"
-  #   puts "Please enter an artist name:"
-  #   artist_name = gets.chomp
-  #   Artist.get_events_by_artist(artist_name)
+    artist.get_events_by_artist(artist.name)
   when "3"
     puts "Which artist would you like to follow?"
     artist_to_follow = gets.chomp
@@ -39,6 +43,7 @@ def run
 
 when "5"
   return
+end
 end
 end
 
