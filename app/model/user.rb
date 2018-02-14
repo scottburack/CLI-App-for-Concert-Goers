@@ -27,8 +27,6 @@ class User < ActiveRecord::Base
       puts "You've already added this artist!"
     else
       Follow.create(user_id: self.id, artist_id: artist.id)
-
-
     end
   end
 
