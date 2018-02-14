@@ -22,8 +22,10 @@ class User < ActiveRecord::Base
 
   def add_artist(artist_name)
     artist_name = artist_name.downcase
-    artist = Artist.find_or_create_by_artist_name(artist_name)
+    # artist = Artist.find_or_create_by_artist_name(artist_name)
+    artist = Artist.find_by(name: artist_name)
     Follow.create(user_id: self.id, artist_id: artist.id)
+    Event.add_events_by_artist(artist_name)
   end
 
 

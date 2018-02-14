@@ -27,7 +27,7 @@ class Event < ActiveRecord::Base
     hash = get_json_from_artist_url(artist_name)["performers"][0]["num_upcoming_events"]
   end
 
-  def add_events_by_artist(artist_name)
+  def self.add_events_by_artist(artist_name)
     artist = Artist.find_or_create_by_artist_name(artist_name)
     page_number = 1
     events_found = 0
