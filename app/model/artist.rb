@@ -46,7 +46,7 @@ class Artist < ActiveRecord::Base
     end
 end
 
-# def add_events_by_artist(artist_name)
+# def get_events_by_artist(artist_name)
 #   artist = Artist.find_or_create_by_name(artist_name)
 #   page_number = 1
 #   events_found = 0

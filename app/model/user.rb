@@ -9,11 +9,11 @@ class User < ActiveRecord::Base
   def self.find_or_create_by_name(name)
     user = User.find_by(name: name)
     if user
-      puts "Hello, #{user.name}!"
+      puts "Welcome back, #{user.name}!"
       user
     else
       User.create(name: name)
-      puts "Welcome, #{name}!"
+      puts "Hello, #{name}! We're happy you joined us!"
       user
     end
   end
@@ -37,8 +37,8 @@ class User < ActiveRecord::Base
     puts "--------------------------------------"
     self.artists.each do |artist|
       puts artist.name.capitalize
+      ""
   end
-  return ""
 end
 
 def artists_array
@@ -55,13 +55,16 @@ def search_for_concerts_by_area(location)
 end
 
 def put_out_concerts_by_area(location)
+  puts "--------------------------------------------------------------"
+  puts "Here are the artists you follow that are playing in this area:"
+  puts "--------------------------------------------------------------"
   search_for_concerts_by_area(location).each do |event|
-    byebug
+
     puts "#{Artist.find_by(id: event.artist_id).name.capitalize}"
     puts "#{event.name.capitalize}"
     puts "#{event.location}"
     puts "Date: #{event.date}"
-    puts "#########################"
+    puts "###################################"
   end
   return nil
 end
