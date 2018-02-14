@@ -12,6 +12,7 @@ def run
   user = User.find_or_create_by_name(name)
   answer = nil
   until answer == 5
+    puts "-------------------------"
   puts "What would you like to do today?"
   puts "List:"
   puts "-------------------------"
