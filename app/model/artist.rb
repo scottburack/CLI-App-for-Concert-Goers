@@ -39,10 +39,6 @@ class Artist < ActiveRecord::Base
     get_events_by_artist(artist_name)
     end
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-
 
     def get_events_by_artist(artist_name)
       artist = Artist.find_or_create_by_artist_name(artist_name)
@@ -66,66 +62,10 @@ class Artist < ActiveRecord::Base
                       page_number += 1
                     end
                   end
-=======
-def get_events_by_artist(artist_name)
-  artist = Artist.find_or_create_by_name(artist_name)
-  page_number = 1
-  events_found = 0
-  artists_hash
-  until events_found == num_upcoming_events(artist_name)
-    page = RestClient.get("https://api.seatgeek.com/2/events?performers.slug=#{artist_name}&client_id=MTI5NzcxN3wxNTE4NDY4MTUzLjk3&page=#{page_number}")
-    event_hash = JSON.parse(page)
->>>>>>> c782f747a03ee485030673c070f2f642c16ce463
-
-
-<<<<<<< HEAD
-    def get_events_by_artist(artist_name)
-      artist = Artist.find_or_create_by_artist_name(artist_name)
-      page_number = 1
-      events_found = 0
-      until events_found == num_upcoming_events(artist_name)
-        page = RestClient.get("https://api.seatgeek.com/2/events?performers.slug=#{artist_name}&client_id=MTI5NzcxN3wxNTE4NDY4MTUzLjk3&page=#{page_number}")
-        event_hash = JSON.parse(page)
-        event_hash.each do |k,val|
-          if k == "events"
-              val.each do |k2, val2|
-                k2.each do |k3, val3|
-                  if k3 == "venue"
-                    puts val3["name"]
-                    puts val3["display_location"]
-                    puts "Date: #{k2["datetime_local"]}"
-                    puts "#########################"
-                    # byebug
-                    events_found +=1
-                    if events_found % 10 == 0
-                      page_number += 1
-                    end
-                  end
-=======
-          val.each do |k2, val2|
-            k2.each do |k3, val3|
-
-              if k3 == "venue"
-
-                puts val3["name"]
-                puts val3["display_location"]
-                puts "Date: #{k2["datetime_local"]}"
-                puts "#########################"
-                # byebug
-                events_found +=1
-                if events_found % 10 == 0
-                  page_number += 1
->>>>>>> eb68ac6c647c1b9cb8536731f6e5defc66928e20
->>>>>>> c782f747a03ee485030673c070f2f642c16ce463
                 end
               end
             end
           end
       end
     end
-
-
-
-
-
 end
