@@ -24,10 +24,10 @@ class User < ActiveRecord::Base
     artist_name = artist_name.downcase
     artist = Artist.find_or_create_by_artist_name(artist_name)
     if self.artists_array.include?(artist_name)
-      puts "You've already added this artist!!"
+      puts "You've already added this artist!"
     else
-    Follow.create(user_id: self.id, artist_id: artist.id)
-  end
+      Follow.create(user_id: self.id, artist_id: artist.id)
+    end
   end
 
 
