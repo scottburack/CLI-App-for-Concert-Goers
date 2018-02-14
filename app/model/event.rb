@@ -31,7 +31,7 @@ class Event < ActiveRecord::Base
     artist = Artist.find_or_create_by_artist_name(artist_name)
     page_number = 1
     events_found = 0
-    until events_found == num_upcoming_events(artist_name)
+    until events_found == artist.num_upcoming_events(artist_name)
       page = RestClient.get("https://api.seatgeek.com/2/events?performers.slug=#{artist_name}&client_id=MTI5NzcxN3wxNTE4NDY4MTUzLjk3&page=#{page_number}")
       event_hash = JSON.parse(page)
 
@@ -55,9 +55,6 @@ class Event < ActiveRecord::Base
             end
           end
         end
-
-
-
     end
   end
 end
