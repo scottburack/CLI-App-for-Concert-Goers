@@ -25,6 +25,7 @@ class Artist < ActiveRecord::Base
       artist
     else
       Artist.create(name: artist_name)
+      Event.add_events_by_artist(artist_name)
     end
   end
 

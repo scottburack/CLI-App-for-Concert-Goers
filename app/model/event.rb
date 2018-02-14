@@ -27,6 +27,12 @@ class Event < ActiveRecord::Base
     hash = get_json_from_artist_url(artist_name)["performers"][0]["num_upcoming_events"]
   end
 
+  def self.search_for_concerts_by_area(location)
+    Event.where(location: location)
+
+  end
+
+
   def self.add_events_by_artist(artist_name)
     artist_url_name = artist_name.downcase.split(" ").join("-")
     # byebug
@@ -57,6 +63,7 @@ class Event < ActiveRecord::Base
             end
           end
         end
+        return ""
     end
   end
 end

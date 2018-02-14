@@ -46,17 +46,17 @@ def artists_array
   array.uniq
 end
 
-def search_for_concerts_by_area(location)
-  Event.where(location: location)
-
-end
+# def self.search_for_concerts_by_area(location)
+#   Event.where(location: location)
+#
+# end
 
 def put_out_concerts_by_area(location)
   puts "--------------------------------------------------------------"
   puts "Here are the artists you follow that are playing in this area:"
   puts "--------------------------------------------------------------"
-  search_for_concerts_by_area(location).each do |event|
-    byebug
+# byebug
+  Event.search_for_concerts_by_area(location).each do |event|
     if self.artists_array.include?(Artist.find_by(id: event.artist_id).name)
     puts "#{Artist.find_by(id: event.artist_id).name.capitalize}"
     #need to change to only artists user follows
