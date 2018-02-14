@@ -30,12 +30,12 @@ def run
     puts "Please enter an artist name:"
     artist_name = gets.chomp
     artist = Artist.find_or_create_by_artist_name(artist_name)
-
     artist.get_events_by_artist(artist.name)
   when "3"
     puts "Which artist would you like to follow?"
     artist_to_follow = gets.chomp
     user.follow_artist(artist_to_follow)
+    # byebug
   when "4"
     puts "Please enter a location."
     puts "ex. 'New York, NY' or 'Chicago, IL'"
