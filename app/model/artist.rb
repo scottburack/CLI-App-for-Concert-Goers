@@ -32,12 +32,6 @@ class Artist < ActiveRecord::Base
     hash = get_json_from_artist_url(artist_name)["performers"][0]["num_upcoming_events"]
   end
 
-  def get_json_from_events
-
-  end
-
-
-
   def print_out_shows(artist_name)
     # hash = Artist.new.get_events_by_artist(artist_name)
     puts "This artist has these upcoming shows!"
@@ -56,12 +50,9 @@ class Artist < ActiveRecord::Base
         event_hash = JSON.parse(page)
         event_hash.each do |k,val|
           if k == "events"
-
               val.each do |k2, val2|
                 k2.each do |k3, val3|
-
                   if k3 == "venue"
-
                     puts val3["name"]
                     puts val3["display_location"]
                     puts "Date: #{k2["datetime_local"]}"

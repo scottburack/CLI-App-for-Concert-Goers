@@ -4,8 +4,6 @@ class User < ActiveRecord::Base
   has_many :follows
   has_many :artists, through: :follows
 
-
-
   def self.find_or_create_by_name(name)
     user = User.find_by(name: name)
     if user
@@ -18,29 +16,26 @@ class User < ActiveRecord::Base
     end
   end
 
-
-
   def follow_artist(artist_name)
     artist_name = artist_name.downcase
     artist = Artist.find_or_create_by_artist_name(artist_name)
     if self.artists.include?(artist)
       puts "You've already added this artist!"
     else
-      Follow.create(user_id: self.id, artist_id: artist.id)
-
-      # self.artists << artist
+      Follow.find_or_create_by(user_id: self.id, artist_id: artist.id)
     end
   end
 
-
-
   def show_own_artists
+    puts "--------------------------------------"
+
     puts "The artists you currently follow are:"
     puts "--------------------------------------"
     self.artists.each do |artist|
       puts artist.name.capitalize
-      ""
   end
+  puts " "
+  puts " "
 end
 
 def artists_array
@@ -70,9 +65,6 @@ def put_out_concerts_by_area(location)
     puts "Date: #{event.date}"
     puts "###################################"
   end
-
-
-
   end
 end
 
