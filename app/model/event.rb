@@ -28,11 +28,13 @@ class Event < ActiveRecord::Base
   end
 
   def self.add_events_by_artist(artist_name)
+    artist_url_name = artist_name.downcase.split(" ").join("-")
+    # byebug
     artist = Artist.find_or_create_by_artist_name(artist_name)
     page_number = 1
     events_found = 0
     until events_found == artist.num_upcoming_events(artist_name)
-      page = RestClient.get("https://api.seatgeek.com/2/events?performers.slug=#{artist_name}&client_id=MTI5NzcxN3wxNTE4NDY4MTUzLjk3&page=#{page_number}")
+      page = RestClient.get("https://api.seatgeek.com/2/events?performers.slug=#{artist_url_name}&client_id=MTI5NzcxN3wxNTE4NDY4MTUzLjk3&page=#{page_number}")
       event_hash = JSON.parse(page)
 
       event_hash.each do |k,val|
