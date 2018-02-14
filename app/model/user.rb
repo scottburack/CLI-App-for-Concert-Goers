@@ -23,6 +23,7 @@ class User < ActiveRecord::Base
       puts "You've already added this artist!"
     else
       Follow.find_or_create_by(user_id: self.id, artist_id: artist.id)
+      Event.add_events_by_artist(artist_name)
     end
   end
 
@@ -46,10 +47,9 @@ def artists_array
   array.uniq
 end
 
-def search_for_concerts_by_area(location)
-  Event.where(location: location)
-
-end
+# def search_for_concerts_by_area(location)
+#   Event.where(location: location)
+# end
 
 def put_out_concerts_by_area(location)
   puts "--------------------------------------------------------------"

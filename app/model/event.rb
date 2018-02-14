@@ -16,6 +16,10 @@ class Event < ActiveRecord::Base
     url = "https://api.seatgeek.com/2/performers?slug=#{artist_name}&client_id=MTI5NzcxN3wxNTE4NDY4MTUzLjk3"
   end
 
+  def self.search_for_concerts_by_area(location)
+    Event.where(location: location)
+  end
+
 
   def get_json_from_artist_url(artist_name)
     url = insert_artist_into_url(artist_name)
