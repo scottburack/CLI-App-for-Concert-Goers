@@ -22,7 +22,13 @@ class User < ActiveRecord::Base
     if self.artists.include?(artist)
       puts "You've already added this artist!"
     else
+<<<<<<< HEAD
       Follow.find_or_create_by(user_id: self.id, artist_id: artist.id)
+=======
+      Follow.create(user_id: self.id, artist_id: artist.id)
+
+
+>>>>>>> eb68ac6c647c1b9cb8536731f6e5defc66928e20
     end
   end
 
