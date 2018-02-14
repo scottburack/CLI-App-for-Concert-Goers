@@ -20,10 +20,14 @@ class User < ActiveRecord::Base
 
 
 
-  def add_artist(artist_name)
+  def follow_artist(artist_name)
     artist_name = artist_name.downcase
     artist = Artist.find_or_create_by_artist_name(artist_name)
+    if self.artists_array.include?(artist_name)
+      puts "You've already added this artist!!"
+    else
     Follow.create(user_id: self.id, artist_id: artist.id)
+  end
   end
 
 
@@ -45,17 +49,22 @@ def artists_array
   array.uniq
 end
 
-
-
+def search_for_concerts_by_area(location)
+  Event.where(location: location)
 
 end
 
+def put_out_concerts_by_area(location)
+  search_for_concerts_by_area(location).each do |event|
+    byebug
+    puts "#{Artist.find_by(id: event.artist_id).name.capitalize}"
+    puts "#{event.name.capitalize}"
+    puts "#{event.location}"
+    puts "Date: #{event.date}"
+    puts "#########################"
+  end
+  return nil
+end
 
 
-# def search_for_shows_by_area
-#   artists_array.each do |artist_name|
-#     # byebug
-#     Artist.get_events_by_artist(artist_name)
-#
-#   end
-# end
+end
