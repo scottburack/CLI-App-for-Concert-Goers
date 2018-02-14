@@ -28,7 +28,6 @@ class User < ActiveRecord::Base
     else
       Follow.create(user_id: self.id, artist_id: artist.id)
 
-      self.artists << artist
     end
   end
 
