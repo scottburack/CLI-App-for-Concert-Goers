@@ -19,7 +19,7 @@ def run
   puts "1. My Artists"#Complete
   puts "2. Search For An Artist"#Complete
   puts "3. Follow Artist"#Complete
-  puts "4. Search Concerts By City"#complete
+  puts "4. Check to see if your artists are playing by you!"#complete
   puts "5. Exit"
   answer = gets.chomp
 
@@ -49,3 +49,12 @@ end
 end
 
 run
+
+# s = User.new("scott")
+# s.get_events_from_follows
+
+#
+#
+# byebug
+#
+# "yoooo"

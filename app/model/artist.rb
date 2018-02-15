@@ -26,6 +26,7 @@ class Artist < ActiveRecord::Base
     else
       Artist.create(name: artist_name)
       Event.add_events_by_artist(artist_name)
+      artist
     end
   end
 
@@ -38,7 +39,7 @@ class Artist < ActiveRecord::Base
     puts "This artist has these upcoming shows!"
     puts "--------------------------------------"
     get_events_by_artist(artist_name)
-    end
+  end
 
 
     def get_events_by_artist(artist_name)
@@ -69,7 +70,7 @@ class Artist < ActiveRecord::Base
               end
             end
           end
-          return ""
       end
+      # return ""
     end
 end

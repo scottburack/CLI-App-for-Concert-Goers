@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
       puts "You've already added this artist!"
     else
       Follow.find_or_create_by(user_id: self.id, artist_id: artist.id)
-      Event.add_events_by_artist(artist_name)
+      self.artists << artist
     end
   end
 
@@ -45,6 +45,10 @@ def artists_array
     array << artist.name
   end
   array.uniq
+end
+
+def get_events_from_follows
+  self.artists.map {|art| art.events}
 end
 
 
