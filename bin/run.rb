@@ -9,7 +9,7 @@ def run
 
   puts 'Hello. What is your name?'
   name = gets.chomp
-  user = User.find_or_create_by_name(name)
+  user = User.find_or_create_by(name: name)
   answer = nil
   until answer == 5
     puts "-------------------------"
@@ -29,11 +29,28 @@ def run
   when "2"
     puts "Please enter an artist name:"
     artist_name = gets.chomp
-    artist = Artist.find_or_create_by_artist_name(artist_name)
-    artist.get_events_by_artist(artist.name)
+    artist = Artist.find_by(name: artist_name)
+    if artist
+      artist
+    else
+      artist = Artist.create(name: artist_name)
+      Event.add_events_by_artist(artist_name)
+      artist
+    end
+    artist.get_events_by_artist(artist_name)
+
+
   when "3"
     puts "Which artist would you like to follow?"
     artist_to_follow = gets.chomp
+    artist = Artist.find_by(name: artist_to_follow)
+    if artist
+      artist
+    else
+      artist = Artist.create(name: artist_to_follow)
+      Event.add_events_by_artist(artist_to_follow)
+      artist
+    end
     user.follow_artist(artist_to_follow)
     # byebug
   when "4"
