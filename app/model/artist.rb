@@ -18,18 +18,6 @@ class Artist < ActiveRecord::Base
     JSON.parse(response)
   end
 
-  def self.find_or_create_by_artist_name(artist_name)
-    artist_name = artist_name.downcase
-    artist = Artist.find_by(name: artist_name)
-    if artist
-      artist
-    else
-      Artist.create(name: artist_name)
-      Event.add_events_by_artist(artist_name)
-      artist
-    end
-  end
-
   def num_upcoming_events(artist_name)
     hash = get_json_from_artist_url(artist_name)["performers"][0]["num_upcoming_events"]
   end
@@ -45,7 +33,7 @@ class Artist < ActiveRecord::Base
     def get_events_by_artist(artist_name)
       artist_url_name = artist_name.downcase.split(" ").join("-")
       # byebug
-      artist = Artist.find_or_create_by_artist_name(artist_name)
+      Artist.find_or_create_by(name: artist_name)
       page_number = 1
       events_found = 0
       until events_found == num_upcoming_events(artist_url_name)
