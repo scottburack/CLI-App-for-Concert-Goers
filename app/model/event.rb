@@ -2,15 +2,15 @@ class Event < ActiveRecord::Base
 
   belongs_to :artist
 
-  def self.find_or_create_by_data(name, location, date, artist_id)
-    event = Event.find_by(name: name, date: date, location: location, artist_id: artist_id)
-    if event
-      event
-    else
-      Event.create(name: name, date: date, location: location, artist_id: artist_id)
-    end
-    event
-  end
+  # def self.find_or_create_by_data(name, location, date, artist_id)
+  #   event = Event.find_by(name: name, date: date, location: location, artist_id: artist_id)
+  #   if event
+  #     event
+  #   else
+  #     Event.create(name: name, date: date, location: location, artist_id: artist_id)
+  #   end
+  #   event
+  # end
 
   def insert_artist_into_url(artist_name)
     url = "https://api.seatgeek.com/2/performers?slug=#{artist_name}&client_id=MTI5NzcxN3wxNTE4NDY4MTUzLjk3"
@@ -62,6 +62,5 @@ class Event < ActiveRecord::Base
           end
         end
     end
-    return ""
   end
 end

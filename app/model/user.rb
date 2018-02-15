@@ -4,17 +4,17 @@ class User < ActiveRecord::Base
   has_many :follows
   has_many :artists, through: :follows
 
-  def self.find_or_create_by_name(name)
-    user = User.find_by(name: name)
-    if user
-      puts "Welcome back, #{user.name}!"
-      user
-    else
-      User.create(name: name)
-      puts "Hello, #{name}! We're happy you joined us!"
-      user
-    end
-  end
+  # def self.find_or_create_by_name(name)
+  #   user = User.find_by(name: name)
+  #   if user
+  #     puts "Welcome back, #{user.name}!"
+  #     user
+  #   else
+  #     User.create(name: name)
+  #     puts "Hello, #{name}! We're happy you joined us!"
+  #     user
+  #   end
+  # end
 
   def follow_artist(artist_name)
     artist_name = artist_name.downcase
